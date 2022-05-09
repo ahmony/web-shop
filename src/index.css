@@ -1,13 +1,124 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary: #2080be;
+  --secondary: #ef7e22;
+  --accents: #bad232;
+  --text: #333;
+  --white: white;
+  --grey: grey;
+  --font: 16px;
+  --transition: .3s linear;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-size: var(--font);
+  color: var(--text);
+}
+
+a {
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.topbar div {
+  font-size: .9rem;
+}
+
+.topbar a {
+  color: var(--accents);
+}
+
+.topbar a:hover {
+  color: var(--primary);
+}
+
+.navbar-brand img {
+  width: 80px;
+}
+
+nav {
+  border-bottom: 5px solid var(--accents);
+}
+
+.carousel-caption {
+  bottom: 7rem;
+}
+
+.carousel-item h2 span {
+  color: var(--accents);
+}
+
+.carousel-item h2 {
+  line-height: 1;
+}
+
+.button {
+  background-color: var(--accents);
+  padding: 9px 29px;
+  color: var(--text);
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.button:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+.price h5:last-child {
+  color: var(--accents);
+}
+
+.holder {
+  overflow: hidden;
+}
+
+.products img {
+  transition: var(--transition);
+}
+
+.products img:hover {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.about i {
+  color: var(--accents);
+  font-size: 2rem;
+}
+
+.about {
+  transition: var(--transition);
+  border-bottom: 5px solid var(--accents);
+}
+
+.about .border-dark:hover {
+  background-color: var(--text);
+  color: var(--white);
+}
+
+.discoverOff {
+  background-image: url(../public/img/shop.jpg);
+  height: 65vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.list-unstyled a {
+  color: var(--accents);
+  font-weight: lighter;
+}
+
+.list-unstyled a:hover {
+  color: var(--white);
+  font-weight: lighter;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 767px) {
+  .topbar {
+    display: none;
+  }
 }
