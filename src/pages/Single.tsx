@@ -1,28 +1,31 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { productsStateInt } from '../redux/reducers/products';
+import { useEffect } from 'react';
 
-interface propsInt
+const Single = (): JSX.Element =>
 {
-    items: {
-        id: number,
-        title: string,
-        price: number,
-        description: string,
-        quantity: number,
-        img: string
-    }[]
-}
+    useEffect(() =>
+    {
+        const element = document.getElementById('current') as HTMLElement;
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+        });
+    }, []);
 
-const Single = (props: propsInt): JSX.Element =>
-{
-    const { items } = props;
+    const products: productsStateInt[] = useSelector((state: any) => state.products)
     const { name } = useParams();
-    const data = items.filter((item: any) => item.title === name);
+    const product = products.filter((item: any) => item.title === name);
+
     let options = [];
-    for (let i = 1; i <= data[0].quantity; i++)
+    for (let i = 1; i <= product[0].quantity; i++)
     {
         options.push(<option key={i} value={i}>{i}</option>);
     }
+
     return (
         <div>
 
@@ -33,20 +36,20 @@ const Single = (props: propsInt): JSX.Element =>
                 </p>
             </section>
 
-            <section className="single py-5">
+            <section id='current' className="single py-5">
                 <article className="container">
                     {<div className="row align-items-center">
                         <div className="col-md-6">
                             <img
-                                src={data[0].img}
+                                src={product[0].img}
                                 alt=""
                                 className="img-fluid rounded shadow-lg"
                             />
                         </div>
                         <div className="col-md-6">
                             <div className="price d-flex justify-content-between">
-                                <h5>{data[0].title}</h5>
-                                <h5>{data[0].price}$</h5>
+                                <h5>{product[0].title}</h5>
+                                <h5>{product[0].price}$</h5>
                             </div>
                             <select className="form-select" aria-label="Default select example">
                                 {options}

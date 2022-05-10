@@ -1,21 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { productsStateInt } from '../redux/reducers/products';
 
-interface propsInt
+const Home = (): JSX.Element =>
 {
-    items: {
-        id: number,
-        title: string,
-        price: number,
-        description: string,
-        quantity: number,
-        img: string
-    }[]
-}
 
-const Home = (props: propsInt): JSX.Element =>
-{
-    const { items } = props;
+    const scrollToProducts = (e: any) =>
+    {
+        e.preventDefault();
+        const my_element = document.getElementById("current")!;
+        my_element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+        });
+    }
+
+    const products: productsStateInt[] = useSelector((state: any) => state.products)
+
     return (
         <div>
             <div
@@ -53,7 +56,7 @@ const Home = (props: propsInt): JSX.Element =>
                                 Lorem ipsum dolor sit amet consectetur <br />
                                 adipisicing elit. Tenetur, veniam!
                             </p>
-                            <a href="" className="button">View collection</a>
+                            <a style={{ cursor: 'pointer' }} onClick={scrollToProducts} className="button">View collection</a>
                         </div>
                     </div>
                     <div className="carousel-item">
@@ -69,7 +72,7 @@ const Home = (props: propsInt): JSX.Element =>
                                 Lorem ipsum dolor sit amet consectetur <br />
                                 adipisicing elit. Tenetur, veniam!
                             </p>
-                            <a href="" className="button">View collection</a>
+                            <a style={{ cursor: 'pointer' }} onClick={scrollToProducts} className="button">View collection</a>
                         </div>
                     </div>
                 </div>
@@ -93,11 +96,11 @@ const Home = (props: propsInt): JSX.Element =>
                 </button>
             </div>
 
-            <section className="products py-5">
+            <section id='current' className="products py-5">
                 <article className="container">
                     <div className="row">
 
-                        {items.map((item: any) =>
+                        {products.map((item: any) =>
                         {
                             return <div className="col-md-4 col-sm-6" key={item.id}>
                                 <div className="card" >
@@ -161,7 +164,7 @@ const Home = (props: propsInt): JSX.Element =>
                 <article className="container text-end">
                     <p className="lead">Woman Collection</p>
                     <h2 className="display-4 fw-bolder">50% OFF</h2>
-                    <a href="" className="button mb-2">Discover now</a>
+                    <a style={{ cursor: 'pointer' }} onClick={scrollToProducts} className="button mb-2">Discover now</a>
                     <p>Limited time offer</p>
                 </article>
             </section>
