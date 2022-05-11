@@ -57,6 +57,7 @@ nav {
   color: var(--text);
   display: inline-block;
   margin-top: 5px;
+  border-radius: 3px;
 }
 
 .button:hover {
@@ -121,4 +122,8 @@ nav {
   .topbar {
     display: none;
   }
+}
+
+.active {
+  border-bottom: 1px solid black;
 }

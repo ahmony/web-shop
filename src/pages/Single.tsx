@@ -1,8 +1,10 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { productsStateInt } from '../redux/reducers/products';
 import { useEffect } from 'react';
+import { updateCart } from '../redux/actions/actions';
+
 
 const Single = (): JSX.Element =>
 {
@@ -16,14 +18,20 @@ const Single = (): JSX.Element =>
         });
     }, []);
 
+
     const products: productsStateInt[] = useSelector((state: any) => state.products)
     const { name } = useParams();
-    const product = products.filter((item: any) => item.title === name);
+    const dispatch = useDispatch();
+    const [product] = products.filter((item: any) => item.title === name);
 
     let options = [];
-    for (let i = 1; i <= product[0].quantity; i++)
+    for (let i = 1; i <= product.quantity; i++)
     {
         options.push(<option key={i} value={i}>{i}</option>);
+    }
+    const optionChange = (event: any) =>
+    {
+        product.quantity = event.target.value;
     }
 
     return (
@@ -41,17 +49,17 @@ const Single = (): JSX.Element =>
                     {<div className="row align-items-center">
                         <div className="col-md-6">
                             <img
-                                src={product[0].img}
+                                src={product.img}
                                 alt=""
                                 className="img-fluid rounded shadow-lg"
                             />
                         </div>
                         <div className="col-md-6">
                             <div className="price d-flex justify-content-between">
-                                <h5>{product[0].title}</h5>
-                                <h5>{product[0].price}$</h5>
+                                <h5>{product.title}</h5>
+                                <h5>{product.price}$</h5>
                             </div>
-                            <select className="form-select" aria-label="Default select example">
+                            <select onClick={optionChange} className="form-select" aria-label="Default select example">
                                 {options}
                             </select>
                             <p className="py-4">
@@ -61,7 +69,7 @@ const Single = (): JSX.Element =>
                                 amet consectetur adipisicing elit. A dolorum in voluptas quod
                                 autem exercitationem.
                             </p>
-                            <a href="" className="button">Add to cart</a>
+                            <a style={{ cursor: 'pointer' }} onClick={() => dispatch(updateCart(product))} className="button">Add to cart</a>
                         </div>
                     </div>}
                 </article>
