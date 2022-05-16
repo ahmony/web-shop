@@ -29,7 +29,7 @@ const Navbar = (): JSX.Element =>
                             <Link onClick={() => setActiveState('Home')} className={`nav-link ${activeState === 'Home' ? 'active' : null}`} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link onClick={() => setActiveState('Admin')} className={`nav-link ${activeState === 'Admin' ? 'active' : null}`} to="/admin">Admin</Link>
+                            <Link onClick={() => setActiveState('Collection')} className={`nav-link ${activeState === 'Collection' ? 'active' : null}`} to="/collection">Collection</Link>
                         </li>
                         <li className="nav-item">
                             <Link onClick={() => setActiveState('Cart')} className={`nav-link ${activeState === 'Cart' ? 'active' : null}`} to="/cart">Cart({cartProducts ? cartProducts.length : 0})</Link>

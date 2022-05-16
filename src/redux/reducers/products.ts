@@ -35,6 +35,21 @@ const initialState: productsStateInt[] = [ {
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi voluptates eveniet temporibus, modi libepturi!',
       quantity: 1,
       img: '../img/product3.jpg'
+    },
+  {
+      id: 4,
+      title: 'Women watch',
+      price: 55,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi voluptates eveniet temporibus, modi libepturi!',
+      quantity: 4,
+      img: '../img/product4.jpg'
+    },{
+      id: 5,
+      title: 'Fancy hat',
+      price: 25,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi voluptates eveniet temporibus, modi libepturi!',
+      quantity: 8,
+      img: '../img/product5.jpg'
     }];
 
 const productsReducer = (state: productsStateInt[] = initialState, action: productsActionInt) => {

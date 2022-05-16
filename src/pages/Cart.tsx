@@ -1,11 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartStateInt } from '../redux/reducers/cart';
+import { deleteFromCart } from '../redux/actions/actions';
 
 const Cart = (): JSX.Element =>
 {
     const cartProducts = useSelector((state: any) => state.cart);
+    const dispatch = useDispatch();
     let id = 0;
+
     return (
 
         <section className="single py-5">
@@ -19,6 +22,7 @@ const Cart = (): JSX.Element =>
                                     <th scope="col">Product</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
+                                    <th scope='col'>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,6 +31,7 @@ const Cart = (): JSX.Element =>
                                     <td>{product.title}</td>
                                     <td>{product.quantity}</td>
                                     <td>{product.quantity * product.price}$</td>
+                                    <td><button onClick={() => dispatch(deleteFromCart(product.title, product.id))} className='btn btn-danger'>X</button></td>
                                 </tr>)}
                             </tbody>
                         </table>

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { productsStateInt } from '../redux/reducers/products';
 import { useEffect } from 'react';
-import { updateCart } from '../redux/actions/actions';
+import { addToCart } from '../redux/actions/actions';
 
 
 const Single = (): JSX.Element =>
@@ -69,7 +69,7 @@ const Single = (): JSX.Element =>
                                 amet consectetur adipisicing elit. A dolorum in voluptas quod
                                 autem exercitationem.
                             </p>
-                            <a style={{ cursor: 'pointer' }} onClick={() => dispatch(updateCart(product))} className="button">Add to cart</a>
+                            <a style={{ cursor: 'pointer' }} onClick={() => dispatch(addToCart(product))} className="button">Add to cart</a>
                         </div>
                     </div>}
                 </article>

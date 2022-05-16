@@ -6,17 +6,6 @@ import { productsStateInt } from '../redux/reducers/products';
 const Home = (): JSX.Element =>
 {
 
-    const scrollToProducts = (e: any) =>
-    {
-        e.preventDefault();
-        const my_element = document.getElementById("current")!;
-        my_element.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-            inline: "nearest"
-        });
-    }
-
     const products: productsStateInt[] = useSelector((state: any) => state.products)
 
     return (
@@ -56,7 +45,7 @@ const Home = (): JSX.Element =>
                                 Lorem ipsum dolor sit amet consectetur <br />
                                 adipisicing elit. Tenetur, veniam!
                             </p>
-                            <a style={{ cursor: 'pointer' }} onClick={scrollToProducts} className="button">View collection</a>
+                            <Link style={{ cursor: 'pointer' }} to='/collection' className="button">View collection</Link>
                         </div>
                     </div>
                     <div className="carousel-item">
@@ -72,7 +61,7 @@ const Home = (): JSX.Element =>
                                 Lorem ipsum dolor sit amet consectetur <br />
                                 adipisicing elit. Tenetur, veniam!
                             </p>
-                            <a style={{ cursor: 'pointer' }} onClick={scrollToProducts} className="button">View collection</a>
+                            <Link style={{ cursor: 'pointer' }} to='/collection' className="button">View collection</Link>
                         </div>
                     </div>
                 </div>
@@ -100,25 +89,26 @@ const Home = (): JSX.Element =>
                 <article className="container">
                     <div className="row">
 
-                        {products.map((item: any) =>
+                        {products.map((item: any, i: number) =>
                         {
-                            return <div className="col-md-4 col-sm-6" key={item.id}>
-                                <div className="card" >
-                                    <div className="holder">
-                                        <Link to={`/single/${item.title}`}><img src={item.img} style={{ cursor: 'pointer' }} className="card-img-top" alt="..." /></Link>
-                                    </div>
-                                    <div className="card-body">
-                                        <div className="price d-flex justify-content-between">
-                                            <h5 className="card-title">{item.title}</h5>
-                                            <h5>{item.price}$</h5>
+                            if (i < 3)
+                                return <div className="col-md-4 col-sm-6" key={item.id}>
+                                    <div className="card" >
+                                        <div className="holder">
+                                            <Link to={`/single/${item.title}`}><img src={item.img} style={{ cursor: 'pointer' }} className="card-img-top" alt="..." /></Link>
                                         </div>
-                                        <p className="card-text">
-                                            {item.description}
-                                        </p>
-                                        <Link to={`/single/${item.title}`} className="button">Shop now</Link>
+                                        <div className="card-body">
+                                            <div className="price d-flex justify-content-between">
+                                                <h5 className="card-title">{item.title}</h5>
+                                                <h5>{item.price}$</h5>
+                                            </div>
+                                            <p className="card-text">
+                                                {item.description}
+                                            </p>
+                                            <Link to={`/single/${item.title}`} className="button">Shop now</Link>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         })}
 
                     </div>
@@ -160,11 +150,11 @@ const Home = (): JSX.Element =>
                 </article>
             </section>
 
-            <section className="discoverOff d-flex align-items-center">
-                <article className="container text-end">
+            <section className="discoverOff d-flex ">
+                <article className="container text-end center">
                     <p className="lead">Woman Collection</p>
                     <h2 className="display-4 fw-bolder">50% OFF</h2>
-                    <a style={{ cursor: 'pointer' }} onClick={scrollToProducts} className="button mb-2">Discover now</a>
+                    <Link style={{ cursor: 'pointer' }} to='/collection' className="button mb-2">Discover now</Link>
                     <p>Limited time offer</p>
                 </article>
             </section>
